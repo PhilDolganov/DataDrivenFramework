@@ -20,8 +20,8 @@ public class TestProperties {
         OR.load(fis);
 
 //        System.out.println(config.getProperty("browser"));
-//        System.out.println(OR.getProperty("bmlBtn"));
-        System.out.println(TestUtil.screenshotName);
+        System.out.println(OR.getProperty("bmlBtn"));
+        //System.out.println(TestUtil.screenshotName);
     }
 
     }
