@@ -9,24 +9,26 @@ import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Hashtable;
+
 import static org.testng.Assert.assertTrue;
 
 public class AddCustomerTest extends TestBase {
 
     @Test(dataProviderClass = TestUtil.class,dataProvider = "dp")
-    public void addCustomerTest(String firstName, String lastName, String postCode, String alerttext, String runmode) throws InterruptedException {
-        if (!runmode.equals("Y")){
+    public void addCustomerTest(Hashtable<String,String> data) throws InterruptedException {
+        if (!data.get("runmode").equals("Y")){
             throw new SkipException("Skipping the test case as the Run mode for data set is NO");
         }
 
         click("addCustBtn_CSS");
-        type("firstname_CSS",firstName);
-        type("lastname_XPATH",lastName);
-        type("postcode_CSS",postCode);
+        type("firstname_CSS",data.get("firstname"));
+        type("lastname_XPATH",data.get("lastname"));
+        type("postcode_CSS",data.get("postcode"));
         click("addbtn_CSS");
         Thread.sleep(2000);
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        assertTrue(alert.getText().contains(alerttext));
+        assertTrue(alert.getText().contains(data.get("alerttext")));
         alert.accept();
 
         Thread.sleep(2000);
