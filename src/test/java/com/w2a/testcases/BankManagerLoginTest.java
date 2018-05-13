@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class BankManagerLoginTest extends TestBase {
 
     @Test
-    public void loginAsBankManager() throws IOException, InterruptedException {
+    public void bankManagerLoginTest() throws IOException, InterruptedException {
 
         verifyEquals("abc","xyz");
         Thread.sleep(3000);
