@@ -40,6 +40,7 @@ public class TestBase {
     public static WebDriverWait wait;
     public ExtentReports rep = ExtentManager.getInstance();
     public static ExtentTest test;
+    public static String browser;
 
 
 
@@ -70,6 +71,13 @@ public class TestBase {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            if (System.getenv("browser")!=null && !System.getenv("browser").isEmpty()){
+                browser = System.getenv("browser");
+            } else {
+                browser = config.getProperty("browser");
+            }
+            config.setProperty("browser", browser);
 
             if (config.getProperty("browser").equals("firefox")){
                 driver = new FirefoxDriver();
